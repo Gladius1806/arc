@@ -219,13 +219,15 @@ export default function Dashboard() {
   }, [receipt.isSuccess, receipt.isError]);
 
   const handleDeposit = async () => {
-    if (!parsedDeposit) return;
+    if (!parsedDeposit || !address) return;
     setTxMsg(null);
     try {
       const hash = await writeContractAsync({
         address: CONTRACT_ADDRESS, abi: vaultAbi,
         functionName: "deposit", value: parsedDeposit,
-      });
+        account: address,
+        chain: undefined,
+      } as Parameters<typeof writeContractAsync>[0]);
       setTxHash(hash);
     } catch (e) {
       setTxMsg({ text: (e instanceof Error ? e.message.split("(")[0].trim() : "Error"), ok: false });
@@ -233,13 +235,15 @@ export default function Dashboard() {
   };
 
   const handleWithdraw = async () => {
-    if (!parsedWithdraw) return;
+    if (!parsedWithdraw || !address) return;
     setTxMsg(null);
     try {
       const hash = await writeContractAsync({
         address: CONTRACT_ADDRESS, abi: vaultAbi,
         functionName: "withdraw", args: [parsedWithdraw],
-      });
+        account: address,
+        chain: undefined,
+      } as Parameters<typeof writeContractAsync>[0]);
       setTxHash(hash);
     } catch (e) {
       setTxMsg({ text: (e instanceof Error ? e.message.split("(")[0].trim() : "Error"), ok: false });
