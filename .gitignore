@@ -1,0 +1,31 @@
+# ─── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Next.js ─────────────────────────────────────────────────────────────────
+.next/
+out/
+build/
+
+# ─── Environment / Secrets (NEVER commit these) ───────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─── Hardhat artifacts ───────────────────────────────────────────────────────
+artifacts/
+cache/
+typechain-types/
+
+# ─── OS / Editor ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+coverage/
+*.tsbuildinfo
+next-env.d.ts
